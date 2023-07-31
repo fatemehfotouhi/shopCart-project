@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping cart project</title>
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
+</head>
+
+<body>
+    <!--------------- Header ------------>
+    <div class="header">
+        <span class="header__logo">ShopCart</span>
+        <div class="header__search">
+            <input type="text" placeholder="Search..." class="header__search-input">
+            <span class="header__search-icon">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </span>
+        </div>
+        <div class="header__cart">
+            <span>
+                <i class="fa-solid fa-cart-shopping"></i>
+            </span>
+            <span class="header__cart-items-quantity">0</span>
+        </div>
+    </div>
+
+    <!-------------- Products ------------->
+    <div class="products"></div>
+    <!------------ Backdrop ------------>
+    <!-- <div class="backdrop"></div> -->
+    <!--------------- Cart --------------->
+    <!-- <div class="cart">
+        <span class="cart_close-icon">
+            <i class="fa-solid fa-xmark"></i>
+        </span>
+
+        <div class="cart__item">
+            <div class="cart__item-img">
+                <img width="50px" height="auto" src="https://fakestoreapi.com/img/71YAIFU48IL._AC_UL640_QL65_ML3_.jpg"
+                    alt="">
+            </div>
+            <div class="cart__item-desc">
+                <span class="cart__item-title">Apple Watch</span>
+                <span class="cart__item-price">99.99$</span>
+                <div class="cart__item-quantity">
+                    <span class="cart__item-quantity--decrement">-</span>
+                    <span>1</span>
+                    <span class="cart__item-quantity--increment">+</span>
+                </div>
+            </div>
+            <span class="cart__item--delete">
+                <i class="fa-solid fa-trash-can"></i>
+            </span>
+        </div>
+
+        <div class="cart__payment-section">
+            <div class="cart__payment-details">
+                <span class="total-price-title">total price:</span>
+                <span class="total-price">99.23 $</span>
+            </div>
+            <button class="cart__payment-btn">Payment</button>
+        </div>
+    </div>
+ -->
+
+
+
+    <!----------- Cart button in Mobile ------------>
+
+    <div class="cart__btn">
+        <button>Cart</button>
+    </div>
+
+    <script src="./index.js"></script>
+</body>
+
+</html>
