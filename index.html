@@ -16,68 +16,68 @@
     <!--------------- Header ------------>
     <div class="header">
         <span class="header__logo">ShopCart</span>
-        <div class="header__search">
-            <input type="text" placeholder="Search..." class="header__search-input">
-            <span class="header__search-icon">
-                <i class="fa-solid fa-magnifying-glass"></i>
-            </span>
+        <div class="header__search-section">
+            <div class="header__search">
+                <input type="text" placeholder="Search..." class="header__search-input">
+                <span class="header__search-icon">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </span>
+            </div>
+            <ul class="header__search-result-container"></ul>
         </div>
         <div class="header__cart">
-            <span>
+            <span class="header__cart-icon">
                 <i class="fa-solid fa-cart-shopping"></i>
             </span>
             <span class="header__cart-items-quantity">0</span>
         </div>
     </div>
 
+    <div class="filter-Section">
+        <ul class="filter">
+            <li class="filter__mens-clothing">men's clothing</li>
+            <li class="filter__jewelry">jewelry</li>
+            <li class="filter__electronics">electronics</li>
+            <li class="filter__womans-clothing">women's clothing</li>
+        </ul>
+        <i class="fa-solid fa-arrow-down-wide-short"></i></span>
+    </div>
+
     <!-------------- Products ------------->
+
     <div class="products"></div>
+
     <!------------ Backdrop ------------>
-    <!-- <div class="backdrop"></div> -->
+
+    <div class="backdrop hidden"></div>
+
     <!--------------- Cart --------------->
-    <!-- <div class="cart">
-        <span class="cart_close-icon">
+
+
+    <div class="cart hidden">
+        <span class="cart_close-btn">
             <i class="fa-solid fa-xmark"></i>
         </span>
-
-        <div class="cart__item">
-            <div class="cart__item-img">
-                <img width="50px" height="auto" src="https://fakestoreapi.com/img/71YAIFU48IL._AC_UL640_QL65_ML3_.jpg"
-                    alt="">
-            </div>
-            <div class="cart__item-desc">
-                <span class="cart__item-title">Apple Watch</span>
-                <span class="cart__item-price">99.99$</span>
-                <div class="cart__item-quantity">
-                    <span class="cart__item-quantity--decrement">-</span>
-                    <span>1</span>
-                    <span class="cart__item-quantity--increment">+</span>
-                </div>
-            </div>
-            <span class="cart__item--delete">
-                <i class="fa-solid fa-trash-can"></i>
-            </span>
-        </div>
+        <div class="cart__items-container"></div>
 
         <div class="cart__payment-section">
             <div class="cart__payment-details">
-                <span class="total-price-title">total price:</span>
-                <span class="total-price">99.23 $</span>
+                <span class="total-price"></span>
             </div>
-            <button class="cart__payment-btn">Payment</button>
+            <div class="cart__action-btn">
+                <button class="cart__payment-btn">Payment</button>
+                <button class="cart__clear-btn">Clear Cart</button>
+            </div>
         </div>
     </div>
- -->
-
 
 
     <!----------- Cart button in Mobile ------------>
-
     <div class="cart__btn">
         <button>Cart</button>
     </div>
 
-    <script src="./index.js"></script>
+    <script src="./index.js" type="module"></script>
 </body>
 
 </html>
