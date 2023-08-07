@@ -390,6 +390,7 @@ body {
     row-gap: 1.25rem;
     font-weight: bold;
     font-size: 1.25rem;
+    width: 100%;
 }
 
 .fa-trash-can {
