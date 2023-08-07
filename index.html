@@ -13,71 +13,105 @@
 </head>
 
 <body>
-    <!--------------- Header ------------>
-    <div class="header">
-        <span class="header__logo">ShopCart</span>
-        <div class="header__search-section">
-            <div class="header__search">
-                <input type="text" placeholder="Search..." class="header__search-input">
-                <span class="header__search-icon">
-                    <i class="fa-solid fa-magnifying-glass"></i>
-                </span>
+    <div>
+        <!--------------- Header ------------>
+
+        <div class="header">
+            <div class="header-container">
+                <span class="header__logo">ShopCart</span>
+                <div class="header__search-section">
+                    <div class="header__search">
+                        <input type="text" placeholder="Search..." class="header__search-input">
+                        <span class="header__search-icon">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </span>
+                    </div>
+                    <ul class="header__search-result-container"></ul>
+                </div>
+                <div class="header__cart">
+                    <span class="header__cart-icon">
+                        <i class="fa-solid fa-cart-shopping"></i>
+                    </span>
+                    <span class="header__cart-items-quantity">0</span>
+                </div>
             </div>
-            <ul class="header__search-result-container"></ul>
         </div>
-        <div class="header__cart">
-            <span class="header__cart-icon">
-                <i class="fa-solid fa-cart-shopping"></i>
+
+        <!------------ Content Section -------------->
+        <div class="content-section">
+            <!--------- Category Section ----------->
+            <div class="category-section">
+                <p class="category-title">Category</p>
+                <ul class="category-items">
+                    <li class="filter__mens-clothing">men's clothing</li>
+                    <li class="filter__jewelry">jewelry</li>
+                    <li class="filter__electronics">electronics</li>
+                    <li class="filter__womans-clothing">women's clothing</li>
+                </ul>
+            </div>
+            <div class="right-section">
+                <!------------ Filter Section ------------>
+                <div class="filter-section">
+                    <span class="filter-icon">
+                        <i class="fa-solid fa-arrow-down-wide-short"></i>
+                    </span>
+                    <ul class="filter-items">
+                        <li class="expensive-item">expensive</li>
+                        <li class="cheapest-item">Cheapest</li>
+                        <li class="highest-score">Highest score</li>
+                        <li class="lowest-score">lowest score</li>
+                    </ul>
+                </div>
+
+                <!------------ Filter in Mobile -------------->
+                <div class="hidden filter-mobile">
+                    <select name="" id="" class="select-category">
+                        <option value="mensClothing">men's clothing</option>
+                        <option value="jewelry">jewelry</option>
+                        <option value="electronics">electronics</option>
+                        <option value="womenClothing">women's clothing</option>
+                    </select>
+                    <select name="" id="" class="select-filter">
+                        <option value="expensive">expensive</option>
+                        <option value="cheapest">Cheapest</option>
+                        <option value="highestScore">Highest score</option>
+                        <option value="lowestScore">lowest score</option>
+                    </select>
+                </div>
+                <!----------Products Section ------------>
+                <div class="products-section"></div>
+            </div>
+        </div>
+        <!------------ Backdrop ------------>
+
+        <div class="backdrop hidden"></div>
+
+        <!--------------- Cart --------------->
+
+        <div class="cart hidden">
+            <span class="cart_close-btn">
+                <i class="fa-solid fa-xmark"></i>
             </span>
-            <span class="header__cart-items-quantity">0</span>
-        </div>
-    </div>
 
-    <div class="filter-Section">
-        <ul class="filter">
-            <li class="filter__mens-clothing">men's clothing</li>
-            <li class="filter__jewelry">jewelry</li>
-            <li class="filter__electronics">electronics</li>
-            <li class="filter__womans-clothing">women's clothing</li>
-        </ul>
-        <i class="fa-solid fa-arrow-down-wide-short"></i></span>
-    </div>
+            <div class="cart__items-container"></div>
 
-    <!-------------- Products ------------->
-
-    <div class="products"></div>
-
-    <!------------ Backdrop ------------>
-
-    <div class="backdrop hidden"></div>
-
-    <!--------------- Cart --------------->
-
-
-    <div class="cart hidden">
-        <span class="cart_close-btn">
-            <i class="fa-solid fa-xmark"></i>
-        </span>
-        <div class="cart__items-container"></div>
-
-        <div class="cart__payment-section">
-            <div class="cart__payment-details">
-                <span class="total-price"></span>
-            </div>
-            <div class="cart__action-btn">
-                <button class="cart__payment-btn">Payment</button>
-                <button class="cart__clear-btn">Clear Cart</button>
+            <div class="cart__payment-section">
+                <div class="cart__payment-details">
+                    <span class="total-price"></span>
+                </div>
+                <div class="cart__action-btn">
+                    <button class="cart__payment-btn">Payment</button>
+                    <button class="cart__clear-btn">Clear Cart</button>
+                </div>
             </div>
         </div>
-    </div>
 
+        <!----------- Cart button in Mobile ------------>
+        <div class="cart__btn">
+            <button>Cart</button>
+        </div>
 
-    <!----------- Cart button in Mobile ------------>
-    <div class="cart__btn">
-        <button>Cart</button>
-    </div>
-
-    <script src="./index.js" type="module"></script>
+        <script src="./index.js" type="module"></script>
 </body>
 
 </html>

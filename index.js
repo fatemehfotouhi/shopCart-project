@@ -8,14 +8,19 @@ const headerCartBtn = document.querySelector(".header__cart-icon");
 const backdrop = document.querySelector(".backdrop");
 const cartCloseBtn = document.querySelector(".cart_close-btn");
 const cart = document.querySelector(".cart");
-const productsContainer = document.querySelector(".products");
+const productsContainer = document.querySelector(".products-section");
 const cartItemsQuantity = document.querySelector(".header__cart-items-quantity");
 const cartItemsContainer = document.querySelector(".cart__items-container");
 const totalPriceTag = document.querySelector(".total-price");
 const cartClearBtn = document.querySelector(".cart__clear-btn");
 const searchInput = document.querySelector(".header__search-input");
 const searchResultContainer = document.querySelector(".header__search-result-container");
-const filterItems = [...document.querySelectorAll(".filter>li")];
+const categoryItems = [...document.querySelectorAll(".category-items>li")];
+const filterItems = [...document.querySelectorAll(".filter-items>li")];
+const selectCategory = document.querySelector(".select-category");
+const selectFilter = document.querySelector(".select-filter");
+const cartBtn = document.querySelector(".cart__btn");
+
 
 
 // Classes
@@ -70,7 +75,7 @@ class UI {
             </div>
             <div class="product__desc">
                 <span class="product__desc-title">${_product.title}</span>
-                <span class="Product__desc-price">${_product.price} $</span>
+                <span class="product__desc-price">${_product.price} $</span>
             </div>
             <div class="product__rate">
                 <spam class="product__rate-icon">
@@ -82,8 +87,8 @@ class UI {
                 <button class="product__add-btn" data-id=${_product.id}>Add to Cart</button>
             </div>
         </div>`
-            productsContainer.innerHTML = result;
         });
+        productsContainer.innerHTML = result;
     }
 
     getAddToCartBtns() {
@@ -126,7 +131,7 @@ class UI {
         div.setAttribute("data-id", `${cartItem.id}`)
         div.innerHTML = `
         <div class="cart__item-img">
-                <img width="50px" height="auto" src=${cartItem.image}
+                <img src=${cartItem.image}
                     alt="">
             </div>
             <div class="cart__item-desc">
@@ -212,10 +217,58 @@ class UI {
     displayResultOfSearch(_searchResult) {
         let result = ""
         _searchResult.forEach(item => {
-            result += `<li>${item.title}</li>`
+            result += `<li class="title">${item.title}</li>`
         })
         searchResultContainer.innerHTML = result;
 
+    }
+    displayWomenClothing() {
+        const productsData = Storage.getProducts();
+        const filteredWomansClothing = productsData.filter(data => data.category === "women's clothing");
+        this.displayProducts(filteredWomansClothing);
+        this.getAddToCartBtns();
+    }
+    displayElectronics() {
+        const productsData = Storage.getProducts();
+        const filteredElectronics = productsData.filter(data => data.category === "electronics");
+        this.displayProducts(filteredElectronics)
+        this.getAddToCartBtns();
+    }
+    displayJewelry() {
+        const productsData = Storage.getProducts();
+        const filteredJewelry = productsData.filter(data => data.category === "jewelery");
+        this.displayProducts(filteredJewelry)
+        this.getAddToCartBtns();
+    }
+    displayMenClothing() {
+        const productsData = Storage.getProducts();
+        const filteredMensClothing = productsData.filter(data => data.category === "men's clothing");
+        this.displayProducts(filteredMensClothing);
+        this.getAddToCartBtns();
+    }
+    sortBaseOnHighestPrice() {
+        const productsData = Storage.getProducts();
+        const expensiveItems = productsData.sort(((a, b) => b.price - a.price));
+        this.displayProducts(expensiveItems);
+        this.getAddToCartBtns();
+    }
+    sortBaseOnLowestPrice() {
+        const productsData = Storage.getProducts();
+        const cheapestItems = productsData.sort(((a, b) => a.price - b.price));
+        this.displayProducts(cheapestItems);
+        this.getAddToCartBtns();
+    }
+    sortBaseOnHighestScore() {
+        const productsData = Storage.getProducts();
+        const highestScore = productsData.sort(((a, b) => b.rating.rate - a.rating.rate));
+        this.displayProducts(highestScore);
+        this.getAddToCartBtns();
+    }
+    sortBaseOnLowestScore() {
+        const productsData = Storage.getProducts();
+        const lowestScore = productsData.sort(((a, b) => a.rating.rate - b.rating.rate));
+        this.displayProducts(lowestScore);
+        this.getAddToCartBtns();
     }
 }
 
@@ -234,55 +287,106 @@ document.addEventListener("DOMContentLoaded", async () => {
     ui.cartLogic();
 })
 
-filterItems.forEach((item) => {
+categoryItems.forEach((item) => {
     item.addEventListener("click", (e) => {
+
         const classes = e.target.classList;
         const ui = new UI();
-        const productsData = Storage.getProducts()
         if (classes.contains("filter__mens-clothing")) {
-            const filteredMensClothing = productsData.filter(data => data.category === "men's clothing");
-            ui.displayProducts(filteredMensClothing)
+            ui.displayWomenClothing();
         } else if (classes.contains("filter__jewelry")) {
-            const filteredJewelry = productsData.filter(data => data.category === "jewelery");
-            ui.displayProducts(filteredJewelry)
+            ui.displayJewelry();
         } else if (classes.contains("filter__electronics")) {
-            const filteredElectronics = productsData.filter(data => data.category === "electronics");
-            ui.displayProducts(filteredElectronics)
+            ui.displayElectronics();
         } else if (classes.contains("filter__womans-clothing")) {
-            const filteredWomansClothing = productsData.filter(data => data.category === "women's clothing");
-            ui.displayProducts(filteredWomansClothing)
+            ui.displayWomenClothing();
         }
     })
 
 })
-searchInput.addEventListener("input", async (e) => {
 
-    const products = new Products();
+
+filterItems.forEach(item => {
+    item.addEventListener("click", (e) => {
+
+        const ui = new UI();
+        const classes = e.target.classList;
+        if (classes.contains("expensive-item")) {
+            ui.sortBaseOnHighestPrice();
+        } else if (classes.contains("cheapest-item")) {
+            ui.sortBaseOnLowestPrice();
+        } else if (classes.contains("highest-score")) {
+            ui.sortBaseOnHighestScore();
+        } else if (classes.contains("lowest-score")) {
+            ui.sortBaseOnLowestScore();
+        }
+    })
+})
+
+
+selectCategory.addEventListener("change", (e) => {
+    const value = e.target.value;
+
+
     const ui = new UI();
-    const productsData = await products.getProducts();
+    if (value === "mensClothing") {
+        ui.displayWomenClothing();
+    } else if (value === "jewelry") {
+        ui.displayJewelry();
+    } else if (value === "electronics") {
+        ui.displayElectronics();
+    } else if (value === "womenClothing") {
+        ui.displayWomenClothing();
+    }
+})
+
+selectFilter.addEventListener("change", (e) => {
+    const value = e.target.value;
+    const ui = new UI();
+    if (value === "expensive") {
+        ui.sortBaseOnHighestPrice();
+    } else if (value === "cheapest") {
+        ui.sortBaseOnLowestPrice();
+    } else if (value === "highestScore") {
+        ui.sortBaseOnHighestScore();
+    } else if (value === "lowestScore") {
+        ui.sortBaseOnLowestScore();
+    }
+})
+
+
+searchInput.addEventListener("input", (e) => {
+
+    const ui = new UI();
+    const productsData = Storage.getProducts();
     let value = e.target.value.toLowerCase();
 
     const selectedTitle = productsData.filter(p => p.title.toLowerCase().includes(value));
 
     ui.displayResultOfSearch(selectedTitle);
 
-    const li = [...document.querySelectorAll("li")];
+    const li = [...document.querySelectorAll(".title")];
     li.forEach(l => {
         l.addEventListener("click", (e) => {
             const f = selectedTitle.filter(i => i.title === e.target.innerHTML)
-            ui.displayProducts(f)
+            ui.displayProducts(f);
+            ui.getAddToCartBtns();
             searchInput.value = e.target.innerHTML;
             searchResultContainer.innerHTML = ''
         })
     })
 })
 
-
+cartBtn.addEventListener("click", () => {
+    cart.classList.remove("hidden");
+    backdrop.classList.remove("hidden");
+})
 
 headerCartBtn.addEventListener("click", () => {
     cart.classList.remove("hidden");
     backdrop.classList.remove("hidden");
 })
+
 backdrop.addEventListener("click", closeModal);
 cartCloseBtn.addEventListener("click", closeModal);
 
